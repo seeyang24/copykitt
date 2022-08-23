@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from copykitt import generate_branding_snippet, generate_keywords
+from mangum import Mangum
 
 app = FastAPI()
+handler = Mangum(app) # entry point for lamda
 MAX_INPUT_LENGTH = 32
 
 # Snippets
@@ -28,7 +30,7 @@ def validate_input_length(prompt: str):
     if len(prompt) >= MAX_INPUT_LENGTH:
         raise HTTPException(status_code=400, 
                             detail=f"Input length is too long. Must be under {MAX_INPUT_LENGTH} characters."
-                        )
+        )
         
 
 # uvicorn copykitt_api:app --reload
