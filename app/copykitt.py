@@ -1,8 +1,11 @@
 import os
+from dotenv import load_dotenv, find_dotenv
 import openai
 import argparse
 import re
 from typing import List
+
+load_dotenv(find_dotenv())
 
 MAX_INPUT_LENGTH = 24
 
